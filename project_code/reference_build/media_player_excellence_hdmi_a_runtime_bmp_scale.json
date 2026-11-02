@@ -1,0 +1,21 @@
+{
+  "bit": "media_player_excellence_hdmi_a_runtime_bmp_scale.bit",
+  "size_bytes": 629648,
+  "sha256": "427f960d9c35f9481b116af8b8446fcae504955bf9b8bb99653573b93a909573",
+  "source_image_sha256": {
+    "PIC1.BMP": "c46c54a25154f6e55dd5bf24a0ab9864768ec592e22fdb4f4bbf77778c346727",
+    "PIC2.BMP": "1236106243bd6ac0c0f38db3e0a4e4a9df2c07be177a49dbfaf2c8f6c587f15f",
+    "PIC3.BMP": "8cea45af89872de81d6405f1c67cdf195ceaa9695d9c70fcacb122d1e67b038f",
+    "PIC4.BMP": "a767f6d4dcb257a25206ba9614f6696b7bf72e6fd20c346b5aa9a499511f4680"
+  },
+  "verification": [
+    "BMP decoder 8 cases pass",
+    "routed setup WNS 0.131 ns, hold WNS 0.004 ns",
+    "board test pending"
+  ],
+  "limitations": [
+    "BMP24 only",
+    "source width 640..4096 and height 480..4096",
+    "aspect ratio stretched to 4:3"
+  ]
+}

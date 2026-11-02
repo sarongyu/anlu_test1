@@ -1,0 +1,32 @@
+{
+  "candidate": "D:\\zyx\\anlulu\\topic1_student_reference\\project_code\\reference_build\\media_player_excellence_hdmi_a_fix.bit",
+  "source": "D:\\zyx\\anlulu\\topic1_student_reference\\project_code\\project\\media_player_excellence_Runs\\phy_1\\media_player_excellence.bit",
+  "bytes": 629648,
+  "sha256": "2ddb80f9f4285c456cd9bcfb40f3e7e39bd2ea3e044c44f637530e5a6afa8a09",
+  "build_time_local": "2026-10-20T21:26:15.735972",
+  "timing": "SWNS: 1.587ns, STNS: 0.000ns.\nHWNS: 0.014ns, HTNS: 0.000ns.",
+  "hdmi_port": "HDMI_A",
+  "modified_production_source": "risk_prototypes/hdmi_audio_route_b/rtl/hdmi_tmds_channel_encoder.v",
+  "adc_sha256": "e731f666e3d33cb6090aac83348d12f67c07a043fd36ecb9f416f35ecca3b083",
+  "hardware_display_verified": false,
+  "retained_features": [
+    "TF/FAT32/BMP",
+    "four images",
+    "SDRAM frame buffering",
+    "manual/auto slideshow",
+    "brightness/volume/period controls",
+    "configuration Flash",
+    "HDMI audio",
+    "OSD",
+    "watermark",
+    "scrolling subtitle",
+    "waveform",
+    "UART",
+    "LED status"
+  ],
+  "known_remaining_warnings": [
+    "vendor SDRAM internal undriven signals/clocks",
+    "inferred FIFO RAM byte-enable pins",
+    "existing unmatched busy_sync1/commit_sync1 timing exceptions"
+  ]
+}

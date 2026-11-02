@@ -1,0 +1,105 @@
+============================================================
+   Tang Dynasty, V6.2.168116
+   Copyright (c) 2012-2025 Anlogic Inc.
+   Executable = D:/Anlogic/TD_6.2.1_Engineer_6.2.168.116/bin/td.exe
+   Built at =   16:32:07 Jun 12 2025
+   Run by =     zyx
+   Run Date =   Mon Oct 26 23:12:55 2026
+
+   Run on =     RESPONSIBILITY
+============================================================
+RUN-1002 : start command "commit_param -step design"
+RUN-1001 : Print Global Property
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   Parameters   |  Settings  |  Default Values  |  Note  
+RUN-1001 : --------------------------------------------------------
+RUN-1001 :   enable_seed  |    off     |       off        |        
+RUN-1001 :     message    |  standard  |     standard     |        
+RUN-1001 :   qor_monitor  |     on     |        on        |        
+RUN-1001 :   syn_ip_flow  |    off     |       off        |        
+RUN-1001 :     thread     |    auto    |       auto       |        
+RUN-1001 : --------------------------------------------------------
+RUN-1001 : Print Design Property
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :       Parameters       |  Settings  |  Default Values  |  Note  
+RUN-1001 : ----------------------------------------------------------------
+RUN-1001 :   default_reg_initial  |    auto    |       auto       |        
+RUN-1001 :    hdl_warning_level   |   normal   |      normal      |        
+RUN-1001 : ----------------------------------------------------------------
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/al_ip/sys_pll.v
+HDL-1007 : undeclared symbol 'open', assumed default net type 'wire' in ../dependencies/lesson36_build/al_ip/sys_pll.v(91)
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/al_ip/clk_wize.v
+HDL-1007 : undeclared symbol 'open', assumed default net type 'wire' in ../dependencies/lesson36_build/al_ip/clk_wize.v(78)
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/al_ip/afifo_32_16_256.v
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/src/reset_sync.v
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/src/sync_2ff.v
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/src/button_event.v
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/src/fifo_prefetch_2.v
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/src/video_timing_ctrl.v
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/src/rgb_video_adapter.v
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/src/sdram/enc_file/sdr_init_ref.enc.v
+HDL-1007 : analyze included file ./src/sdram/enc_file/global_def.v in ../dependencies/lesson36_build/src/sdram/enc_file/sdr_init_ref.enc.v(11)
+HDL-1007 : back to file '../dependencies/lesson36_build/src/sdram/enc_file/sdr_init_ref.enc.v' in ../dependencies/lesson36_build/src/sdram/enc_file/sdr_init_ref.enc.v(11)
+HDL-1007 : undeclared symbol '**', assumed default net type '**' in ../dependencies/lesson36_build/src/sdram/enc_file/sdr_init_ref.enc.v(57)
+HDL-1007 : back to file '../dependencies/lesson36_build/src/sdram/enc_file/sdr_init_ref.enc.v' in ../dependencies/lesson36_build/src/sdram/enc_file/sdr_init_ref.enc.v(158)
+HDL-5007 WARNING: concatenation with an unsized literal will be treated as 32 bits in ../dependencies/lesson36_build/src/sdram/enc_file/sdr_init_ref.enc.v(47)
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/src/sdram/enc_file/sdr_wrrd.enc.v
+HDL-5007 WARNING: concatenation with an unsized literal will be treated as 32 bits in ../dependencies/lesson36_build/src/sdram/enc_file/sdr_wrrd.enc.v(283)
+HDL-1007 : back to file '../dependencies/lesson36_build/src/sdram/enc_file/sdr_wrrd.enc.v' in ../dependencies/lesson36_build/src/sdram/enc_file/sdr_wrrd.enc.v(19)
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/src/sdram/enc_file/sdr_as_ram.enc.v
+HDL-1007 : back to file '../dependencies/lesson36_build/src/sdram/enc_file/sdr_as_ram.enc.v' in ../dependencies/lesson36_build/src/sdram/enc_file/sdr_as_ram.enc.v(45)
+HDL-1007 : analyze verilog file ../dependencies/lesson36_build/src/sdram/sdram.v
+HDL-1007 : analyze included file ../dependencies/lesson36_build/src/sdram/enc_file/global_def.v in ../dependencies/lesson36_build/src/sdram/sdram.v(10)
+HDL-1007 : back to file '../dependencies/lesson36_build/src/sdram/sdram.v' in ../dependencies/lesson36_build/src/sdram/sdram.v(10)
+HDL-1007 : undeclared symbol 'SDR_CKE', assumed default net type 'wire' in ../dependencies/lesson36_build/src/sdram/sdram.v(95)
+HDL-1007 : analyze verilog file ../rtl/storage/sd_spi_byte_engine.v
+HDL-1007 : analyze verilog file ../rtl/storage/sd_spi_command.v
+HDL-1007 : analyze verilog file ../rtl/storage/sd_spi_init.v
+HDL-1007 : analyze verilog file ../rtl/storage/sd_spi_sector_reader.v
+HDL-1007 : analyze verilog file ../rtl/storage/sd_media_service.v
+HDL-1007 : analyze verilog file ../rtl/storage/sd_sector_replay_buffer.v
+HDL-1007 : analyze verilog file ../rtl/filesystem/fat32_volume_scanner.v
+HDL-1007 : analyze verilog file ../rtl/filesystem/fat32_file_streamer.v
+HDL-1007 : analyze verilog file ../rtl/image/bmp24_decoder.v
+HDL-1007 : analyze verilog file ../rtl/memory/media_frame_loader.v
+HDL-1007 : analyze verilog file ../rtl/memory/media_frame_reader.v
+HDL-1007 : analyze verilog file ../rtl/control/media_player_control.v
+HDL-1007 : analyze verilog file ../rtl/display/video_fade_transition.v
+HDL-1007 : analyze verilog file ../rtl/display/status_osd_overlay.v
+HDL-1007 : analyze verilog file ../rtl/display/brand_watermark_24.v
+HDL-1007 : analyze verilog file ../rtl/display/osd_overlay_24.v
+HDL-1007 : analyze verilog file ../rtl/display/promax_audio_waveform.v
+HDL-1007 : analyze verilog file ../rtl/display/subtitle_scroll_24.v
+HDL-1007 : analyze verilog file ../rtl/audio/pcm_media_tone.v
+HDL-1007 : analyze verilog file ../rtl/config/spi_byte_engine.v
+HDL-1007 : analyze verilog file ../rtl/config/w25q64_preflight_reader.v
+HDL-1007 : analyze verilog file ../rtl/config/w25q64_record_store.v
+HDL-1007 : analyze verilog file ../rtl/config/config_journal.v
+HDL-1007 : analyze verilog file ../rtl/config/config_flash_journal.v
+HDL-1007 : analyze verilog file ../rtl/config/player_config_persistence.v
+HDL-1007 : analyze verilog file ../rtl/io/dual_key_long_hold_guard.v
+HDL-1007 : analyze verilog file ../rtl/io/dual_key_chord_router.v
+HDL-1007 : analyze verilog file ../rtl/integration/media_ingest_pipeline.v
+HDL-1007 : analyze verilog file ../rtl/integration/media_ingest_frontend.v
+HDL-1007 : analyze verilog file ../rtl/integration/media_storage_ingest_top.v
+HDL-1007 : analyze verilog file ../rtl/integration/media_video_pipeline.v
+HDL-1007 : analyze verilog file ../rtl/audio/m06_pcm_contract_adapter.v
+HDL-1007 : analyze verilog file ../rtl/integration/media_hdmi_audio_bridge.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_bch8.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_audio_sample_packetizer.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_audio_acr_packetizer.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_audio_infoframe_packetizer.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_audio_packet_scheduler.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_data_island_mapper.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_terc4_encoder.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_data_island_scheduler.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_tmds_channel_encoder.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_tmds_serializer_core.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_tmds_eg4_serializer.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_tmds_eg4_phy.v
+HDL-1007 : analyze verilog file ../risk_prototypes/hdmi_audio_route_b/rtl/hdmi_audio_symbol_core.v
+HDL-1007 : analyze verilog file ../rtl/io/param_menu_controller.v
+HDL-1007 : analyze verilog file ../rtl/io/uart_status_reporter.v
+HDL-1007 : analyze verilog file ../rtl/io/uart_tx_byte.v
+HDL-1007 : analyze verilog file ../board/player_excellence/src/media_player_excellence_top.v
+HDL-1007 : analyze verilog file ../rtl/io/sticky_error_cdc.v

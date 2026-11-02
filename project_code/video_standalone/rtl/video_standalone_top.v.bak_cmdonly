@@ -1,0 +1,127 @@
+`timescale 1ns/1ps
+
+// Separate bitstream for the second board. Plays VID1.RAW from FAT32 and
+// emits silent 640x480 HDMI. The first board remains untouched.
+module video_standalone_top (
+    input wire sys_clk, sd_miso,
+    input wire key1_n, key2_n, key4_n,
+    input wire eth_rx_clk, eth_rx_ctl,
+    input wire [3:0] eth_rx_d,
+    output wire eth_tx_clk, eth_tx_ctl,
+    output wire [3:0] eth_tx_d,
+    output wire sd_cs_n, sd_sclk, sd_mosi,
+    output wire HDMI_CLK_P, HDMI_D2_P, HDMI_D1_P, HDMI_D0_P,
+    output wire [3:0] led
+);
+    // The original reset was KEY1; KEY4 is the dedicated manual reset now.
+    wire sys_rst_n = key4_n;
+    wire pixel_clk, pixel_clk_5x, video_locked;
+    wire mem_clk, mem_shift_unused, feedback_unused, mem_locked;
+    wire mem_rst_n, pix_rst_n, pix5_rst_n;
+    clk_wize u_video_pll (.refclk(sys_clk),.reset(!sys_rst_n),
+        .clk0_out(pixel_clk_5x),.clk1_out(pixel_clk),.locked(video_locked));
+    sys_pll u_mem_pll (.refclk(sys_clk),.reset(!sys_rst_n),
+        .clk0_out(feedback_unused),.clk1_out(mem_clk),
+        .clk2_out(mem_shift_unused),.locked(mem_locked));
+    reset_sync u_mem_reset (.clk(mem_clk),.ext_rst_n(sys_rst_n && mem_locked),.rst_n_sync(mem_rst_n));
+    reset_sync u_pix_reset (.clk(pixel_clk),.ext_rst_n(sys_rst_n && video_locked),.rst_n_sync(pix_rst_n));
+    reset_sync u_pix5_reset (.clk(pixel_clk_5x),.ext_rst_n(sys_rst_n && video_locked),.rst_n_sync(pix5_rst_n));
+
+    wire hs, vs, de;
+    wire [11:0] x, y;
+    reg raw_vs_q;
+    wire frame_start = raw_vs_q && !vs;
+    always @(posedge pixel_clk or negedge pix_rst_n) begin
+        if (!pix_rst_n) raw_vs_q <= 1; else raw_vs_q <= vs;
+    end
+    video_timing_ctrl u_timing (.pclk(pixel_clk),.rst_n(pix_rst_n),
+        .hsync(hs),.vsync(vs),.de(de),.x(x),.y(y));
+    // A 128x128 5fps source is scaled to 640x480.
+    // Horizontal mapping is 5:1; vertical mapping is 4:1.
+    wire [6:0] source_y = y[8:2];
+    wire [6:0] source_x = x / 5;
+    wire [14:0] pixel_address = {source_y,7'b0} + source_x;
+    wire [7:0] pixel_index;
+    wire image_ready;
+    wire [7:0] error_code;
+    video_storage_player u_video (.mem_clk(mem_clk),.mem_rst_n(mem_rst_n),
+        .pixel_clk(pixel_clk),.pixel_rst_n(pix_rst_n),
+        .pixel_address(pixel_address),.frame_start(frame_start),
+        .pixel_index(pixel_index),.image_ready(image_ready),
+        .error_code(error_code),.sd_cs_n(sd_cs_n),
+        .sd_sclk(sd_sclk),.sd_mosi(sd_mosi),.sd_miso(sd_miso));
+
+    reg [9:0] x_q1, x_q2, x_q3;
+    reg hs_q1, vs_q1, de_q1;
+    reg hs_q2, vs_q2, de_q2;
+    reg hs_q3, vs_q3, de_q3;
+    reg [23:0] rgb_q;
+    wire [23:0] rgb_expanded = {pixel_index[7:5],pixel_index[7:5],pixel_index[7:6],
+                               pixel_index[4:2],pixel_index[4:2],pixel_index[4:3],
+                               pixel_index[1:0],pixel_index[1:0],pixel_index[1:0],pixel_index[1:0]};
+    // RAM read, lane selection and RGB output take three pixel clocks.
+    // Delay the complete HDMI timing bundle by the same three clocks.
+    always @(posedge pixel_clk or negedge pix_rst_n) begin
+        if (!pix_rst_n) begin
+            x_q1 <= 0; x_q2 <= 0; x_q3 <= 0;
+            hs_q1 <= 1; hs_q2 <= 1; hs_q3 <= 1;
+            vs_q1 <= 1; vs_q2 <= 1; vs_q3 <= 1;
+            de_q1 <= 0; de_q2 <= 0; de_q3 <= 0; rgb_q <= 0;
+        end else begin
+            x_q1 <= x[9:0]; x_q2 <= x_q1; x_q3 <= x_q2;
+            hs_q1 <= hs; hs_q2 <= hs_q1; hs_q3 <= hs_q2;
+            vs_q1 <= vs; vs_q2 <= vs_q1; vs_q3 <= vs_q2;
+            de_q1 <= de; de_q2 <= de_q1; de_q3 <= de_q2;
+            rgb_q <= image_ready ? rgb_expanded : 24'h000000;
+        end
+    end
+    wire [9:0] symbol0, symbol1, symbol2;
+    hdmi_audio_symbol_core u_hdmi (.pixel_clk(pixel_clk),.rst_n(pix_rst_n),
+        .video_hsync(hs_q3),.video_vsync(vs_q3),.video_de(de_q3),
+        .video_x(x_q3),.video_rgb(rgb_q),.sample_valid(1'b0),
+        .sample_ready(),.sample_left(16'sd0),.sample_right(16'sd0),
+        .channel0_symbol(symbol0),.channel1_symbol(symbol1),
+        .channel2_symbol(symbol2),.sequence_error());
+    hdmi_tmds_eg4_phy u_phy (.pixel_clk(pixel_clk),.pixel_rst_n(pix_rst_n),
+        .clk_5x(pixel_clk_5x),.clk_5x_rst_n(pix5_rst_n),
+        .channel0_symbol(symbol0),.channel1_symbol(symbol1),
+        .channel2_symbol(symbol2),.tmds_clock_p(HDMI_CLK_P),
+        .tmds_data0_p(HDMI_D0_P),.tmds_data1_p(HDMI_D1_P),.tmds_data2_p(HDMI_D2_P),
+        .phase_error());
+    wire net_send,net_ready,net_received,net_activity;
+    wire [7:0] net_tx_cmd,net_tx_seq,net_rx_cmd,net_rx_seq;
+    wire [15:0] net_packets;
+    wire net_fullscreen,net_live,net_ack;
+    wire [7:0] net_last_seq;
+    wire net_led_rx,net_led_good,net_led_bad,net_led_tx;
+    // RGMII TX clocks: 125 MHz 0 deg for data, 90 deg for TXC (vendor example).
+    // The PHY has no FPGA reset pin.
+    wire eth_clk, eth_clk90, eth_locked;
+    rgmii_tx_pll u_eth_pll (.refclk(sys_clk),.reset(!sys_rst_n),
+        .extlock(eth_locked),.clk0_out(eth_clk),.clk90_out(eth_clk90));
+    wire net_rst_n = sys_rst_n && eth_locked;
+    rgmii_command_link #(.LOCAL_ID(8'h02),.PEER_ID(8'h01)) u_eth (
+        .sys_clk(sys_clk),.rst_n(net_rst_n),
+        .tx_clk(eth_clk),.tx_clk90(eth_clk90),.rx_clk(eth_rx_clk),
+        .rx_d(eth_rx_d),.rx_ctl(eth_rx_ctl),
+        .tx_d(eth_tx_d),.tx_ctl(eth_tx_ctl),.tx_clk_o(eth_tx_clk),
+        .send(net_send),.send_cmd(net_tx_cmd),.send_seq(net_tx_seq),
+        .send_ready(net_ready),.got_cmd(net_received),
+        .got_data(net_rx_cmd),.got_seq(net_rx_seq),
+        .packet_count(net_packets),.activity(net_activity),
+        .led_rx_activity(net_led_rx),.led_rx_good(net_led_good),
+        .led_rx_bad(net_led_bad),.led_tx(net_led_tx));
+    net_command_policy #(.SLAVE(1)) u_net_policy (
+        .clk(sys_clk),.rst_n(net_rst_n),
+        .key1_n(key1_n),.key2_n(key2_n),
+        .rx_pulse(net_received),.rx_cmd(net_rx_cmd),.rx_seq(net_rx_seq),
+        .tx_ready(net_ready),.tx_send(net_send),
+        .tx_cmd(net_tx_cmd),.tx_seq(net_tx_seq),
+        .fullscreen(net_fullscreen),.link_alive(net_live),
+        .last_sequence(net_last_seq),.acknowledged(net_ack));
+    // Network test LEDs (silkscreen LEDn+1 = led[n]):
+    // led[0] blinks per transmitted frame, led[1] full-screen request,
+    // led[2] matching ACK received recently, led[3] blinks when an RX burst
+    // fails length/CRC/address checks.
+    assign led = {net_led_bad, net_live && net_ack, net_fullscreen, net_led_tx};
+endmodule

@@ -1,0 +1,53 @@
+{
+  "candidate": "D:\\zyx\\anlulu\\topic1_student_reference\\project_code\\reference_build\\media_player_excellence_hdmi_a_fix_v2.bit",
+  "sha256": "a4c0eaeaeea5e01a98582eb2bfec64d7c7c81953e01d46616d63e3292f56ea87",
+  "bytes": 629648,
+  "build_time_local": "2026-10-20T21:47:21.397223",
+  "hdmi_port": "HDMI_A",
+  "adc_sha256": "e731f666e3d33cb6090aac83348d12f67c07a043fd36ecb9f416f35ecca3b083",
+  "hardware_display_verified": false,
+  "previous_candidate_hardware_result": "No picture; monitor repeatedly reports no signal; UART READY does not repeat",
+  "changes": [
+    "Video preamble/guard only immediately before active lines",
+    "Keep valid video DE during media loading; selected RGB still blank until ready",
+    "Structural encoder population counts avoid combinational simulation feedback"
+  ],
+  "modified_source_sha256": {
+    "project_code\\risk_prototypes\\hdmi_audio_route_b\\rtl\\hdmi_tmds_channel_encoder.v": "62c05e90bbfa923b47d72e233ada90f26ba1e2eef8607afae529d0ed5c7fbb7f",
+    "project_code\\risk_prototypes\\hdmi_audio_route_b\\rtl\\hdmi_audio_symbol_core.v": "3cc234c3336abeb71ee920a21ab6a72308b4038b1a450b291f28e1574a702083",
+    "project_code\\rtl\\integration\\media_video_pipeline.v": "cea56509d0fc07d0215e2d820e9d9f4381e835ca280e21285bb98c094f389b3e"
+  },
+  "routed_timing": "SWNS: 2.110ns, STNS: 0.000ns.\nHWNS: 0.014ns, HTNS: 0.000ns.",
+  "synthesis_log": "D:\\zyx\\anlulu\\topic1_student_reference\\project_code\\project\\media_player_excellence_Runs\\syn_1\\td_20261020_214016.logw",
+  "physical_log": "D:\\zyx\\anlulu\\topic1_student_reference\\project_code\\project\\media_player_excellence_Runs\\phy_1\\td_20261020_214545.logw",
+  "placement_strategy": {
+    "flow_enable_seed": "on",
+    "place_seed": 2
+  },
+  "validation": [
+    "4864 TMDS video vectors and all control/guard/TERC4 codes",
+    "8 ideal clock phases, 1236 ordered changing words per phase, no forwarded-clock gaps",
+    "3 full frames, 0 invalid video guards, 0 missing leading guards",
+    "2-frame audio bridge: 614400 pixels, 403 audio/32 ACR/2 Audio InfoFrame packets"
+  ],
+  "retained_features": [
+    "TF/FAT32/BMP",
+    "four images",
+    "SDRAM",
+    "manual/auto slideshow",
+    "brightness/volume/period",
+    "Flash persistence",
+    "HDMI audio",
+    "OSD",
+    "watermark",
+    "subtitle",
+    "audio waveform",
+    "UART",
+    "LED"
+  ],
+  "limitations": [
+    "Digital simulation does not validate HDMI_A connector, electrical signal or monitor lock",
+    "HDMI_A board schematic and receiver behavior still require hardware confirmation",
+    "Existing vendor SDRAM/FIFO and unmatched busy_sync1/commit_sync1 warnings remain"
+  ]
+}

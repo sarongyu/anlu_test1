@@ -1,0 +1,22 @@
+Location         : D:\zyx\anlulu\topic1_student_reference\project_code\project\media_player_excellence_Runs\phy_1
+Running with     : Tang Dynasty v6.2.168116
+                   Copyright (c) 2012-2025 Anlogic Inc.
+Top Model        : media_player_excellence_top
+Device           : EG4S20BG256
+Speed            : NA
+
+Timing Mode      : final
+Setup            : WNS   224ps  TNS        0ps  NUM_FEPS     0
+Hold             : WNS    12ps  TNS        0ps  NUM_FEPS     0
+
+Flow Statistics  :
+---------------------------------------------------------------------------------------------------
+     command     |  #calls  |  wall time   |  cpu time(s)  |  used memory(mb)  |  peak memory(mb)  
+---------------------------------------------------------------------------------------------------
+      route      |    2     |  1m27s(65%)  |   111(57%)    |       1099        |       1103        
+      place      |    2     |   45s(34%)   |    83(42%)    |       1079        |       1079        
+    import_db    |    1     |    0s(0%)    |     0(0%)     |        267        |        267        
+  import_device  |    1     |    0s(0%)    |     0(0%)     |        102        |        102        
+---------------------------------------------------------------------------------------------------
+      total      |    6     |    2m12s     |      194      |       1099        |       1103        
+---------------------------------------------------------------------------------------------------

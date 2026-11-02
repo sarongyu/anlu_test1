@@ -1,2 +1,7 @@
-# anlu_test1
-针对于安路 EG4S20BG256 FPGA ，实现了无需处理器与操作系统的 HDMI 音视频播放器
+主板烧录bit文件：
+
+project_code/net_stage/output/master_planA_audio_status_v2.bit
+
+从板烧录bit文件：
+
+project_code/net_stage/output/slave_planA_audio_10fps_status_v2.bit

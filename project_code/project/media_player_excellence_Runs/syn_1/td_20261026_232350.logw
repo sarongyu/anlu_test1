@@ -1,0 +1,39 @@
+============================================================
+   Tang Dynasty, V6.2.168116
+   Copyright (c) 2012-2025 Anlogic Inc.
+   Executable = D:/Anlogic/TD_6.2.1_Engineer_6.2.168.116/bin/td_commands_prompt.exe
+   Built at =   16:32:07 Jun 12 2025
+   Run by =     CodexSandboxOffline
+   Run Date =   Mon Oct 26 23:23:50 2026
+
+   Run on =     RESPONSIBILITY
+============================================================
+Copyright (c) 1998-2019 The OpenSSL Project.  All rights reserved.
+This product includes software developed by the OpenSSL Project
+for use in the OpenSSL Toolkit (http://www.openssl.org/)
+Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+All rights reserved.
+This product includes cryptographic software written by Eric Young (eay@cryptsoft.com)
+HDL-5007 WARNING: concatenation with an unsized literal will be treated as 32 bits in ../../../dependencies/lesson36_build/src/sdram/enc_file/sdr_init_ref.enc.v(47)
+HDL-5007 WARNING: concatenation with an unsized literal will be treated as 32 bits in ../../../dependencies/lesson36_build/src/sdram/enc_file/sdr_wrrd.enc.v(283)
+HDL-5373 WARNING: identifier 'pop_allowed' is used before its declaration in ../../../rtl/memory/media_frame_loader.v(85)
+HDL-5373 WARNING: identifier 'active_index' is used before its declaration in ../../../board/player_excellence/src/media_player_excellence_top.v(224)
+HDL-5373 WARNING: identifier 'active_index' is used before its declaration in ../../../board/player_excellence/src/media_player_excellence_top.v(225)
+HDL-5373 WARNING: identifier 'active_index' is used before its declaration in ../../../board/player_excellence/src/media_player_excellence_top.v(226)
+HDL-5007 WARNING: concatenation with an unsized literal will be treated as 32 bits in ../../../dependencies/lesson36_build/src/sdram/enc_file/sdr_init_ref.enc.v(47)
+HDL-5007 WARNING: concatenation with an unsized literal will be treated as 32 bits in ../../../dependencies/lesson36_build/src/sdram/enc_file/sdr_wrrd.enc.v(283)
+HDL-5317 WARNING: input port '**' is not connected on this instance in ../../../dependencies/lesson36_build/src/sdram/enc_file/sdr_as_ram.enc.v(17)
+HDL-7144 CRITICAL-WARNING: instantiate unknown module pcm_async_fifo in ../../../board/player_excellence/src/media_player_excellence_top.v(141)
+HDL-7144 CRITICAL-WARNING: instantiate unknown module wav_sd_stream in ../../../rtl/integration/media_storage_ingest_top.v(79)
+HDL-5314 WARNING: net 'volume_lut' does not have a driver in ../../../rtl/io/param_menu_controller.v(29)
+HDL-5314 WARNING: net 'period_lut' does not have a driver in ../../../rtl/io/param_menu_controller.v(30)
+HDL-5317 WARNING: input port 'dib[31]' is not connected on this instance in ../../../dependencies/lesson36_build/al_ip/afifo_32_16_256.v(231)
+HDL-5314 WARNING: net 'glyph_rom' does not have a driver in ../../../rtl/display/brand_watermark_24.v(45)
+HDL-5314 WARNING: net 'glyph_rom' does not have a driver in ../../../rtl/display/subtitle_scroll_24.v(34)
+HDL-7144 CRITICAL-WARNING: instantiate unknown module audio_playback_executor in ../../../rtl/integration/media_hdmi_audio_bridge.v(49)
+HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed
+HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed
+HDL-5001 WARNING: Contains anonymous inst(s) and/or net(s) that have not been renamed
+HDL-8007 ERROR: pcm_async_fifo is a black box in ../../../board/player_excellence/src/media_player_excellence_top.v(141)
+HDL-8007 ERROR: wav_sd_stream is a black box in ../../../rtl/integration/media_storage_ingest_top.v(79)
+HDL-8007 ERROR: audio_playback_executor is a black box in ../../../rtl/integration/media_hdmi_audio_bridge.v(49)
